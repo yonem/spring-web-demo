@@ -1,0 +1,27 @@
+# Vagrantfile
+Vagrant.configure("2") do |config|
+
+  # 使用する仮想化プロバイダーを指定
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024" # VMのメモリサイズを設定
+    vb.cpus = 2        # VMのCPUコア数を設定
+    vb.name = "TODOリスト"
+  end
+
+  # CentOS 7を使用
+  config.vm.box = "centos/7"
+
+  # ホストとゲスト間のフォルダ共有を設定
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  # ネットワーク設定
+  config.vm.network "private_network", type: "dhcp"
+  config.vm.network "forwarded_port", guest: 3306, host: 3306, host_ip: "127.0.0.1"
+
+  # プロビジョニングスクリプトを指定
+  config.vm.provision "shell", path: "provision.sh", run: "always"
+
+  if Vagrant.has_plugin?("vagrant-vbguest") then
+      config.vbguest.auto_update = false
+  end
+end
