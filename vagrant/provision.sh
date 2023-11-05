@@ -2,7 +2,7 @@
 sudo su
 
 if [[ `mysql --version` == *"mysql"* ]];then
-  echo "MySQL already installed"
+  echo "MySQL already installed."
   echo `mysql --version`
   exit 0
 fi
@@ -37,8 +37,8 @@ systemctl restart mysqld
 # MySQLのルートパスワードを設定する
 NEW_USER="yonem"
 NEW_USER_PASSWORD="@yonem"
-NEW_DATABASE="todo-list"
-NEW_TEST_DATABASE="todo-list_test"
+NEW_DATABASE="todo_list"
+NEW_TEST_DATABASE="todo_list_test"
 
 echo "新しいユーザーとデータベースを作成する"
 mysql -u root -p$TEMP_PASSWORD --connect-expired-password <<EOF
