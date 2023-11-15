@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns:th="https://www.thymeleaf.org">
+<div th:if="${msg != null}" th:fragment="chk_or_err_msg">
+    <div th:classappend="|${isError ? 'alert-danger':'alert-success'}|"
+         class="alert d-flex align-items-center">
+        <svg class="col-md-1 bi flex-shrink-0 me-2" height="24">
+            <use xlink:href="#exclamation-triangle-fill" th:if="${isError}"/>
+            <use xlink:href="#check-circle-fill" th:unless="${isError}"/>
+        </svg>
+        <span th:text="${msg}">Message</span>
+    </div>
+</div>
+</html>
