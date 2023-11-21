@@ -1,7 +1,6 @@
 package jp.ne.yonem.login;
 
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,8 +11,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @TestPropertySource(locations = "classpath:application-test.properties")
@@ -34,24 +32,21 @@ class SignUpServiceTest {
         this.users = users;
     }
 
-    @AfterEach
-    public void tearDown() {
-
-        try {
-            users.deleteAll();
-
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
     @Test
     @DisplayName("ユーザ情報登録")
     void test1() {
         assertEquals(0, users.findAll().size());
-        var user = new UserInfoEntity(faker.name().username(), faker.internet().emailAddress(), faker.lorem().characters(6, 16));
+        var pwd = faker.lorem().characters(6, 16);
+        var user = new UserInfoEntity(faker.name().username(), faker.internet().emailAddress(), pwd);
         sut.createUser(user);
+
+        var actual = users.findAll().getFirst();
         assertEquals(1, users.findAll().size());
+        assertEquals(user.getId(), actual.getId());
+        assertEquals(user.getName(), actual.getName());
+        assertEquals(user.getEmail(), actual.getEmail());
+        assertEquals(user.getPassword(), actual.getPassword());
+        assertNotEquals(pwd, actual.getPassword()); // 変換後のパスワードで登録されていること
     }
 
     @Test
