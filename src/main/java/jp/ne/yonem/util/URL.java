@@ -50,4 +50,29 @@ public class URL {
      * TODO一覧画面のビュー
      */
     public static final String VIEW_TODO = "todo/list";
+
+    /**
+     * TODO詳細のURL
+     */
+    public static final String TODO_DETAIL = "/todo_detail";
+
+    /**
+     * TODO詳細のビュー
+     */
+    public static final String VIEW_TODO_DETAIL = "todo/todo_detail";
+
+    /**
+     * カテゴリ一覧画面のURL
+     */
+    public static final String CATEGORY = "/category";
+
+    /**
+     * カテゴリ削除のURL
+     */
+    public static final String CATEGORY_DELETE = "/category_delete";
+
+    /**
+     * カテゴリ一覧画面のビュー
+     */
+    public static final String VIEW_CATEGORY = "todo/category";
 }
