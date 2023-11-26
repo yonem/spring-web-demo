@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns:th="https://www.thymeleaf.org">
+<div class="modal-content">
+    <div th:replace="~{common/read_icon :: svg}"></div>
+    <div th:replace="~{common/info_or_err_msg :: info_or_err_msg}"></div>
+    <div th:if="${todo != null}" class="modal-header offset-1">
+        <h2 th:text="${todo.subject}"></h2>
+    </div>
+    <div th:if="${todo != null}" class="modal-body offset-1">
+        <div class="col-12">
+            <textarea th:text="${todo.body}" readonly></textarea>
+        </div>
+    </div>
+    <div class="mb-4 mx-auto">
+        <button type="button" data-dismiss="modal" class="btn btn-secondary ms-0 close">閉じる</button>
+    </div>
+</div>
+<style>
+    textarea {
+      resize: none;
+      width:400px;
+      height:250px;
+    }
+
+    .close {
+        width:100px;
+    }
+</style>
+</html>

@@ -10,6 +10,7 @@ public class MessageUtil {
     public static final String E_001 = "E_001";
     public static final String E_101 = "E_101";
     public static final String E_102 = "E_102";
+    public static final String E_201 = "E_201";
     public static final String I_001 = "I_001";
     public static final String I_101 = "I_101";
 
