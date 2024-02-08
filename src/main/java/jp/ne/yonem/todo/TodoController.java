@@ -4,6 +4,7 @@ import jp.ne.yonem.util.LogicalDeleteForm;
 import jp.ne.yonem.util.MessageUtil;
 import jp.ne.yonem.util.PaginationService;
 import jp.ne.yonem.util.URL;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * TODO一覧Controller
  */
 @Controller
+@Slf4j
 public class TodoController {
 
     private final TodoService service;
@@ -66,6 +68,7 @@ public class TodoController {
 
         } catch (Exception e) {
             var msg = MessageUtil.getMessage(messageSource, MessageUtil.E_201);
+            log.error(msg, e);
             model.addAttribute("msg", msg);
             model.addAttribute("isError", true);
         }
