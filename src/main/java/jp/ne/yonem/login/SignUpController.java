@@ -3,6 +3,7 @@ package jp.ne.yonem.login;
 import jakarta.validation.Valid;
 import jp.ne.yonem.util.MessageUtil;
 import jp.ne.yonem.util.URL;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * ユーザ情報登録Controller
  */
 @Controller
+@Slf4j
 public class SignUpController {
 
     private final SignUpService service;
@@ -59,15 +61,18 @@ public class SignUpController {
                 } else {
                     service.createUser(new UserInfoEntity(form.userName, form.email, form.password));
                     msg = MessageUtil.getMessage(messageSource, MessageUtil.I_101);
+                    log.info(msg);
                 }
             }
 
         } catch (DataIntegrityViolationException e) {
             msg = MessageUtil.getMessage(messageSource, MessageUtil.E_101);
+            log.error(msg, e);
             isError = true;
 
         } catch (Exception e) {
             msg = MessageUtil.getMessage(messageSource, MessageUtil.E_000);
+            log.error(msg, e);
             isError = true;
         }
         model.addAttribute("form", form);
