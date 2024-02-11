@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns:th="https://www.thymeleaf.org">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<div th:fragment="header">
+    <nav class="navbar navbar-expand-lg bg-primary-subtle">
+        <div class="container-fluid flex-row-reverse">
+            <form class="d-flex" action="#" th:action="@{/logout}" method="post">
+                <span th:text="${userName}"></span>
+                <input type="submit" class="btn btn-outline-secondary" value="ログアウト"/>
+            </form>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-md-4 offset-1" style="margin-top: 5px; margin-bottom: 5px;">
+            <h1 th:text="${title}"></h1>
+        </div>
+        <hr>
+    </div>
+</div>
+</html>
