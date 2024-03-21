@@ -2,16 +2,15 @@
 <configuration>
     <root level="info">
         <appender-ref ref="STDOUT"/>
-        <appender-ref ref="FILE"/>
     </root>
-    <logger name="jp.ne.yonem" level="debug">
-        <appender-ref ref="STDOUT"/>
-    </logger>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level - %msg%n</pattern>
         </encoder>
     </appender>
+    <logger name="jp.ne.yonem" level="debug">
+        <appender-ref ref="STDOUT"/>
+    </logger>
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>log/error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
