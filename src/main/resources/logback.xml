@@ -8,20 +8,17 @@
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level - %msg%n</pattern>
         </encoder>
     </appender>
-    <logger name="jp.ne.yonem" level="debug">
-        <appender-ref ref="STDOUT"/>
+    <logger name="jp.ne.yonem" level="info">
+        <appender-ref ref="INFO_LOG"/>
     </logger>
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>log/error.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>log/error.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>5</maxHistory>
-        </rollingPolicy>
+    <appender name="INFO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/info_log</file>
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level - %msg%n</pattern>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss} %-5level [%thread] - %msg%n</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>error</level>
+            <level>info</level>
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
